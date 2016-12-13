@@ -6,13 +6,15 @@ import screenPng from './assets/screen.png';
 
 /* Inicialización de variables y audios */
 var patos = ['pato1', 'pato2', 'pato3', 'pato4'];
-window.globalX = 0;
-window.globalY = 0;
+var globalX = 0;
+var globalY = 0;
 var score = 0;
-var add = 35;
+var add = 10;
 
 var movX = 0;
 var movXtime;
+
+
 
 
 //var malo1Time;
@@ -33,50 +35,63 @@ audioGana = new Audio('assets/audio-ganar.mp3');
 
 class App extends Component {
 
+estableceXglobal(e){
+  if(e<0){
+    e = 0;
+  };
+  globalX = e;
+  window.actualizarX(e);
+}
+  
+
  componentDidMount() {
 
-    var that = this;
+          var that = this;
 
-      $(function(){
-        if(mUser>0){
-          console.log('Es móvil');
-          //alert('es movil');
-          $('main').hide();
-        }  
-    })
+            $(function(){
+              if(mUser>0){
+                //console.log('Es móvil');
+                //alert('es movil');
+                $('main').hide();
+              }  
+          })
 
             window.disparar = function(){
                
-               that.colision();
+              that.colision();
             }
 
             window.matarTiempo = function(){
                 clearInterval(movXtime);
+               
             }
 
             window.moverCelIzq = function(){
-                clearInterval(movXtime);
+               
                 movXtime = setInterval(function(){
-                             movX-=5;
-                            window.globalX = movX - (add);
-                            window.actualizarX(window.globalX);
-                            ///$("#trigger").css({ left: window.globalX });
-                            console.log(window.globalX);
+                             movX-=10;
+                            globalX = movX - (add);
+                            that.estableceXglobal(globalX);
+                            
+                            ///$("#trigger").css({ left: globalX });
+                            //console.log(globalX);
+                           
 
-                }, 10);
+                }, 20);
                 
             }
 
             window.moverCelDer = function(){
-                clearInterval(movXtime);
+            
                 movXtime = setInterval(function(){
-                             movX+=5;
-                            window.globalX = movX - (add);
-                            window.actualizarX(window.globalX);
-                            ///$("#trigger").css({ left: window.globalX });
-                            console.log(window.globalX);
+                            movX+=10;
+                            globalX = movX - (add);
+                            that.estableceXglobal(globalX);
+    
+                            ///$("#trigger").css({ left: globalX });
+                            //console.log(globalX);
 
-                }, 10);
+                },20);
             }
 
             window.moverXReact = function(e){
@@ -142,29 +157,19 @@ class App extends Component {
             
 
             /* Alinear trigger */
+            /*
             $('#app-js').mousemove(function(event) {
                 var realX = event.pageX-($('#app-js').position().left);
                 var realY = event.pageY-($('#app-js').position().top);
-                window.globalX = realX - (add);
-                window.globalY = realY - (add);
-                /*
-           
-                var xAdd = $('#app-js').position().left;
-                var yAdd = $('#app-js').position().top;
-
-                window.globalX = event.clientX - xAdd - (add);
-                window.globalY = event.clientY - yAdd - (add);
-
-                console.log(event.clientX +" "+event.clientY );
-
-                $("#trigger").css({ left: window.globalX, top: window.globalY });
-                */
-                 $("#trigger").css({ left: window.globalX, top: window.globalY });
-                console.log(realX+" - "+realY);
+                globalX = realX - (add);
+                globalY = realY - (add);
+                 $("#trigger").css({ left: globalX, top: globalY });
+                //console.log(realX+" - "+realY);
 
             }).click(function() {
                 that.colision();
             });
+            */
             /* Cargar malos */
             /*
             setTimeout(function(){ 
@@ -230,10 +235,14 @@ class App extends Component {
         }
         /* Detectar colisiones entre patos y pistola */
     colision() {
-         
-       // console.log(window.globalX);
+
             var that = this;
-alert( window.globalX);
+       
+        globalX=$("#trigger").position().left;
+        globalY=$("#trigger").position().top;
+        //alert( globalX);
+        //globalX = $("#trigger").position().left;
+        //globalY = $("#trigger").position().top;
          
             for (var pato in patos) {
                 if (pato) {
@@ -241,8 +250,8 @@ alert( window.globalX);
                     //var trigger = $('#trigger');
                     var rangoX = [patoObj.position().left, patoObj.position().left + patoObj.width()];
                     var rangoY = [patoObj.position().top, patoObj.position().top + patoObj.height()];
-                    var triggerX = [window.globalX, window.globalX + 70];
-                    var triggerY = [window.globalY, window.globalY + 70];
+                    var triggerX = [globalX, globalX + 70];
+                    var triggerY = [globalY, globalY + 70];
                     //var colisionar = 0;
                     /* Localizar contacto en X */
                     var encontradoX = false;
@@ -250,7 +259,7 @@ alert( window.globalX);
                     for (var buscarX = triggerX[0]; buscarX < triggerX[1]; buscarX++) {
                         for (var buscarX2 = rangoX[0]; buscarX2 < rangoX[1]; buscarX2++) {
                             if (Math.round(buscarX) === Math.round(buscarX2)) {
-                                //console.log("bingo X");
+                                ////console.log("bingo X");
                                 encontradoX = true;
                                 break;
                             }
@@ -265,7 +274,7 @@ alert( window.globalX);
                         for (var buscarY = triggerY[0]; buscarY < triggerY[1]; buscarY++) {
                             for (var buscarY2 = rangoY[0]; buscarY2 < rangoY[1]; buscarY2++) {
                                 if (Math.round(buscarY) === Math.round(buscarY2)) {
-                                    console.info("Win : " + patoObj.attr('id'));
+                                    //console.info("Win : " + patoObj.attr('id'));
                                     encontradoY = true;
                                     that.muereAudio();
                                     /* Funciones de personajes extras */

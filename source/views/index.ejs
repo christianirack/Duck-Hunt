@@ -6,15 +6,20 @@
   <script src="/socket.io/socket.io.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
   <script type="text/javascript" src="js/bundle.js" async></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=667, height=375, initial-scale=1, maximum-scale=1, user-scalable=0">
 <link href="css/app.css" rel="stylesheet"></head>
 <body>
+<main id='app'></main>
+<!--
 ----- <%= mUser %>  <  variable vista funcionando -----
 <main id='app'></main>
 <div onClick='enviar()'> Desde template</div>
 <div  class="boton" id="izq"> izq <<<<<<<< </div>
 <div  class="boton" id="der"> der >>>>>>>>> </div>
 <div onmousedown='dispararPato()' class="boton"> dispara  </div>
+-->
+<div id="controlNintendo"></div>
+
 
 <script type="text/javascript">
 	var socket = io();

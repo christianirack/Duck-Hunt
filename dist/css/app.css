@@ -27,7 +27,8 @@ img,
 #malo1,
 #malo2,
 #malo3,
-.boton {
+.boton,
+#controlNintendo {
   margin: 0;
   padding: 0;
   border-radius: 0;
@@ -167,14 +168,18 @@ body {
   padding: 2px; }
 
 #trigger {
-  width: 70px;
-  height: 70px;
+  width: 20px;
+  height: 20px;
   background-color: rgba(255, 255, 255, 0.5);
   position: absolute;
   z-index: 111001;
   border-radius: 50%;
   -webkit-filter: brightness(1.5);
-  filter: brightness(1.5); }
+  filter: brightness(1.5);
+  left: 100px;
+  top: 100px;
+  -webkit-transition: left top 10ms ease;
+  transition: left top 10ms ease; }
 
 /* Importar animaciones */
 /* Animaciones */
@@ -498,6 +503,11 @@ body {
 .boton {
   padding: 20px;
   font-size: 3em; }
+
+#controlNintendo {
+  width: 1334px;
+  height: 750px;
+  background-image: url("/images/control.png?158f6d6b8e8"); }
 
 /* Debug */
 /*
