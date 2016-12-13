@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Juego 2D</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
+  <script type="text/javascript" src="js/bundle.js" async></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/app.css" rel="stylesheet"></head>
+<body>
+----- <%= mUser %>  <  variable vista funcionando -----
+<main id='app'></main>
+<div onClick='enviar()'> Desde template</div>
+<div  class="boton" id="izq"> izq <<<<<<<< </div>
+<div  class="boton" id="der"> der >>>>>>>>> </div>
+<div onmousedown='dispararPato()' class="boton"> dispara  </div>
+
+<script type="text/javascript">
+	var socket = io();
+       socket.on('clienteX', function(e){
+         // alert('Escuchando ***** desde servidor');
+         //$("#trigger").css({ left: e });
+         window.moverXReact(e);
+      });
+       var enviar = function(){
+         socket.emit('servidor', 'Mensaje');
+       }
+       var actualizarX = function(e){
+        socket.emit('servidorX', e);
+        // $("#trigger").css({ left: globalX });
+       }
+
+       socket.on('bala', function(e){
+         // alert('Escuchando ***** desde servidor');
+         //$("#trigger").css({ left: e });
+         window.disparar();
+       
+      });
+
+       var dispararPato = function(e){
+        socket.emit('dispararPato', e);
+        // $("#trigger").css({ left: globalX });
+       }
+
+
+
+
+
+
+</script>
+<script type="text/javascript">
+    var mUser = <%= mUser %>;
+    function test(){
+        alert('Function from index.html');
+    }
+  
+    
+</script>
+</body>
+</html>
