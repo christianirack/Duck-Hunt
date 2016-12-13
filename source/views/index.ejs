@@ -11,6 +11,7 @@
 <body>
 <main id='app'></main>
 <!--
+
 ----- <%= mUser %>  <  variable vista funcionando -----
 <main id='app'></main>
 <div onClick='enviar()'> Desde template</div>
@@ -18,7 +19,16 @@
 <div  class="boton" id="der"> der >>>>>>>>> </div>
 <div onmousedown='dispararPato()' class="boton"> dispara  </div>
 -->
-<div id="controlNintendo"></div>
+<div id="controlNintendo">
+    <div id="ctrlArriba"></div>
+    <div id="ctrlAbajo"></div>
+    <div id="ctrlDer"></div>
+    <div id="ctrlIzq"></div>
+    <div id="ctrlSel"></div>
+    <div id="ctrlStart"></div>
+    <div id="ctrlA"></div>
+    <div id="ctrlB"></div>
+</div>
 
 
 <script type="text/javascript">
@@ -28,6 +38,15 @@
          //$("#trigger").css({ left: e });
          window.moverXReact(e);
       });
+
+       socket.on('clienteY', function(e){
+         // alert('Escuchando ***** desde servidor');
+         //$("#trigger").css({ left: e });
+         window.moverYReact(e);
+      });
+
+
+
        var enviar = function(){
          socket.emit('servidor', 'Mensaje');
        }
@@ -35,6 +54,14 @@
         socket.emit('servidorX', e);
         // $("#trigger").css({ left: globalX });
        }
+
+       var actualizarY = function(e){
+        socket.emit('servidorY', e);
+        // $("#trigger").css({ left: globalX });
+       }
+
+
+
 
        socket.on('bala', function(e){
          // alert('Escuchando ***** desde servidor');

@@ -28,7 +28,28 @@ img,
 #malo2,
 #malo3,
 .boton,
-#controlNintendo {
+#controlNintendo,
+#controlNintendo div,
+.ctrlCruz,
+#ctrlArriba,
+#ctrlAbajo,
+#ctrlArriba,
+#ctrlAbajo,
+.ctrlCruz2,
+#ctrlDer,
+#ctrlIzq,
+#ctrlDer,
+#ctrlIzq,
+.ctrlSel,
+#ctrlSel,
+#ctrlStart,
+#ctrlSel,
+#ctrlStart,
+.ctrls,
+#ctrlA,
+#ctrlB,
+#ctrlA,
+#ctrlB {
   margin: 0;
   padding: 0;
   border-radius: 0;
@@ -505,9 +526,60 @@ body {
   font-size: 3em; }
 
 #controlNintendo {
-  width: 1334px;
-  height: 750px;
-  background-image: url("/images/control.png?158f6d6b8e8"); }
+  width: 667px;
+  height: 375px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url("/images/control.png?158f6d6b8e8");
+  position: relative; }
+
+#controlNintendo div {
+  position: absolute;
+  border: 1px solid red; }
+
+.ctrlCruz, #ctrlArriba, #ctrlAbajo {
+  width: 60px;
+  height: 80px;
+  left: 80px; }
+
+#ctrlArriba {
+  top: 90px; }
+
+#ctrlAbajo {
+  top: 240px; }
+
+.ctrlCruz2, #ctrlDer, #ctrlIzq {
+  width: 80px;
+  height: 80px;
+  top: 160px; }
+
+#ctrlDer {
+  left: 0px; }
+
+#ctrlIzq {
+  left: 140px; }
+
+.ctrlSel, #ctrlSel, #ctrlStart {
+  width: 100px;
+  height: 80px;
+  top: 210px; }
+
+#ctrlSel {
+  left: 220px; }
+
+#ctrlStart {
+  left: 325px; }
+
+.ctrls, #ctrlA, #ctrlB {
+  width: 100px;
+  height: 110px;
+  top: 200px; }
+
+#ctrlA {
+  left: 450px; }
+
+#ctrlB {
+  left: 550px; }
 
 /* Debug */
 /*

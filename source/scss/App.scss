@@ -243,9 +243,77 @@ body {
 	font-size: 3em;
 }
 #controlNintendo{
-	width: 1334px;
-	height: 750px;
+	width: 667px;
+	height: 375px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
 	background-image: resolve(control.png);
+	position: relative;
+}
+#controlNintendo div{
+	position: absolute;
+	border: 1px solid red;
+	
+}
+.ctrlCruz{
+	width: 60px;
+	height: 80px;
+	left: 80px;
+	
+}
+#ctrlArriba{
+	@extend .ctrlCruz;
+	top: 90px;
+}
+#ctrlAbajo{
+	@extend .ctrlCruz;
+	top: 240px;
+}
+
+.ctrlCruz2{
+	width: 80px;
+	height: 80px;
+	top: 160px;
+	
+
+}
+
+#ctrlDer{
+	@extend .ctrlCruz2;
+	left: 0px;
+	
+}
+#ctrlIzq{
+	@extend .ctrlCruz2;
+	left: 140px;
+}
+.ctrlSel{
+	width: 100px;
+	height: 80px;
+	top: 210px;
+	
+}
+#ctrlSel{
+	@extend .ctrlSel;
+	left: 220px;
+}
+#ctrlStart{
+	@extend .ctrlSel;
+	left: 325px;
+}
+.ctrls{
+	width: 100px;
+	height: 110px;
+	top: 200px;
+	
+}
+#ctrlA{
+	@extend .ctrls;
+	left: 450px;
+}
+#ctrlB{
+	@extend .ctrls;
+	left: 550px;
 }
 /* Debug */
 /*

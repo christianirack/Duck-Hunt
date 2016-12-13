@@ -13,7 +13,8 @@ var add = 10;
 
 var movX = 0;
 var movXtime;
-
+var movY = 0;
+var movYtime;
 
 
 
@@ -36,11 +37,14 @@ audioGana = new Audio('assets/audio-ganar.mp3');
 class App extends Component {
 
 estableceXglobal(e){
-  if(e<0){
-    e = 0;
-  };
+
   globalX = e;
   window.actualizarX(e);
+}
+estableceYglobal(e){
+
+  globalY = e;
+  window.actualizarY(e);
 }
   
 
@@ -57,45 +61,54 @@ estableceXglobal(e){
           })
 
             window.disparar = function(){
-               
               that.colision();
             }
 
             window.matarTiempo = function(){
                 clearInterval(movXtime);
+                 clearInterval(movYtime);
                
             }
 
             window.moverCelIzq = function(){
                
                 movXtime = setInterval(function(){
-                             movX-=10;
+                             movX+=10;
                             globalX = movX - (add);
-                            that.estableceXglobal(globalX);
-                            
-                            ///$("#trigger").css({ left: globalX });
-                            //console.log(globalX);
-                           
+                            that.estableceXglobal(globalX);    
 
                 }, 20);
-                
             }
-
             window.moverCelDer = function(){
-            
                 movXtime = setInterval(function(){
-                            movX+=10;
+                            movX-=10;
                             globalX = movX - (add);
                             that.estableceXglobal(globalX);
-    
-                            ///$("#trigger").css({ left: globalX });
-                            //console.log(globalX);
+
+                },20);
+            }
+          window.moverCelArriba = function(){
+                movYtime = setInterval(function(){
+                            movY-=10;
+                            globalY = movY - (add);
+                            that.estableceYglobal(globalY);
+
+                },20);
+            }
+            window.moverCelAbajo = function(){
+                movYtime = setInterval(function(){
+                            movY+=10;
+                            globalY = movY - (add);
+                            that.estableceYglobal(globalY);
 
                 },20);
             }
 
             window.moverXReact = function(e){
                 $("#trigger").css({ left: e });
+            }
+            window.moverYReact = function(e){
+                $("#trigger").css({ top: e });
             }
 
        
@@ -122,7 +135,7 @@ estableceXglobal(e){
             });
 
 
-            $('#izq').on('touchstart', function(e){
+            $('#ctrlIzq').on('touchstart', function(e){
                 e.preventDefault();
                 var touch = e.touches[0];
                   if(touch){
@@ -133,14 +146,9 @@ estableceXglobal(e){
                     // Do some other stuff
                   }
 
-            })
-              $('#izq,#der').on('touchend', function(e){
-                e.preventDefault();
-                window.matarTiempo();
-
-             });
-
-              $('#der').on('touchstart', function(e){
+            });
+            $('#ctrlDer').on('touchstart', function(e){
+             
                 e.preventDefault();
                 var touch = e.touches[0];
                   if(touch){
@@ -151,7 +159,51 @@ estableceXglobal(e){
                     // Do some other stuff
                   }
 
+            });
+            $('#ctrlArriba').on('touchstart', function(e){
+                e.preventDefault();
+                var touch = e.touches[0];
+                  if(touch){
+                    // Do some stuff
+                   window.moverCelArriba();
+                  }
+                  else {
+                    // Do some other stuff
+                  }
+
+            });
+             $('#ctrlAbajo').on('touchstart', function(e){
+                e.preventDefault();
+                var touch = e.touches[0];
+                  if(touch){
+                    // Do some stuff
+                   window.moverCelAbajo();
+                  }
+                  else {
+                    // Do some other stuff
+                  }
+
+            });
+             $('#ctrlB').on('touchstart', function(e){
+                e.preventDefault();
+                var touch = e.touches[0];
+                  if(touch){
+                    // Do some stuff
+                   window.dispararPato();
+                  }
+                  else {
+                    // Do some other stuff
+                  }
+
             })
+
+              $('#ctrlIzq,#ctrlDer,#ctrlArriba,#ctrlAbajo,#ctrlA,#ctrlB').on('touchend', function(e){
+                e.preventDefault();
+                window.matarTiempo();
+
+             });
+
+              
 
             
             
@@ -201,7 +253,6 @@ estableceXglobal(e){
     _initialize(data) {
      // var {users, name} = data;
       //this.setState({users, user: name});
-      alert(1);
   }
 
 

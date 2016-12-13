@@ -20737,6 +20737,8 @@
 	
 	var movX = 0;
 	var movXtime;
+	var movY = 0;
+	var movYtime;
 	
 	//var malo1Time;
 	//var malo1Vidas = 4;
@@ -20756,11 +20758,16 @@
 	    _createClass(App, [{
 	        key: 'estableceXglobal',
 	        value: function estableceXglobal(e) {
-	            if (e < 0) {
-	                e = 0;
-	            };
+	
 	            globalX = e;
 	            window.actualizarX(e);
+	        }
+	    }, {
+	        key: 'estableceYglobal',
+	        value: function estableceYglobal(e) {
+	
+	            globalY = e;
+	            window.actualizarY(e);
 	        }
 	    }, {
 	        key: 'componentDidMount',
@@ -20777,41 +20784,49 @@
 	            });
 	
 	            window.disparar = function () {
-	
 	                that.colision();
 	            };
 	
 	            window.matarTiempo = function () {
 	                clearInterval(movXtime);
+	                clearInterval(movYtime);
 	            };
 	
 	            window.moverCelIzq = function () {
 	
 	                movXtime = setInterval(function () {
-	                    movX -= 10;
-	                    globalX = movX - add;
-	                    that.estableceXglobal(globalX);
-	
-	                    ///$("#trigger").css({ left: globalX });
-	                    //console.log(globalX);
-	
-	                }, 20);
-	            };
-	
-	            window.moverCelDer = function () {
-	
-	                movXtime = setInterval(function () {
 	                    movX += 10;
 	                    globalX = movX - add;
 	                    that.estableceXglobal(globalX);
-	
-	                    ///$("#trigger").css({ left: globalX });
-	                    //console.log(globalX);
+	                }, 20);
+	            };
+	            window.moverCelDer = function () {
+	                movXtime = setInterval(function () {
+	                    movX -= 10;
+	                    globalX = movX - add;
+	                    that.estableceXglobal(globalX);
+	                }, 20);
+	            };
+	            window.moverCelArriba = function () {
+	                movYtime = setInterval(function () {
+	                    movY -= 10;
+	                    globalY = movY - add;
+	                    that.estableceYglobal(globalY);
+	                }, 20);
+	            };
+	            window.moverCelAbajo = function () {
+	                movYtime = setInterval(function () {
+	                    movY += 10;
+	                    globalY = movY - add;
+	                    that.estableceYglobal(globalY);
 	                }, 20);
 	            };
 	
 	            window.moverXReact = function (e) {
 	                (0, _jquery2.default)("#trigger").css({ left: e });
+	            };
+	            window.moverYReact = function (e) {
+	                (0, _jquery2.default)("#trigger").css({ top: e });
 	            };
 	
 	            var audioIntro = new Audio('assets/audio-intro.mp3');
@@ -20835,7 +20850,7 @@
 	                (0, _jquery2.default)('#duckHunt').show();
 	            });
 	
-	            (0, _jquery2.default)('#izq').on('touchstart', function (e) {
+	            (0, _jquery2.default)('#ctrlIzq').on('touchstart', function (e) {
 	                e.preventDefault();
 	                var touch = e.touches[0];
 	                if (touch) {
@@ -20845,12 +20860,8 @@
 	                    // Do some other stuff
 	                }
 	            });
-	            (0, _jquery2.default)('#izq,#der').on('touchend', function (e) {
-	                e.preventDefault();
-	                window.matarTiempo();
-	            });
+	            (0, _jquery2.default)('#ctrlDer').on('touchstart', function (e) {
 	
-	            (0, _jquery2.default)('#der').on('touchstart', function (e) {
 	                e.preventDefault();
 	                var touch = e.touches[0];
 	                if (touch) {
@@ -20859,6 +20870,41 @@
 	                } else {
 	                    // Do some other stuff
 	                }
+	            });
+	            (0, _jquery2.default)('#ctrlArriba').on('touchstart', function (e) {
+	                e.preventDefault();
+	                var touch = e.touches[0];
+	                if (touch) {
+	                    // Do some stuff
+	                    window.moverCelArriba();
+	                } else {
+	                    // Do some other stuff
+	                }
+	            });
+	            (0, _jquery2.default)('#ctrlAbajo').on('touchstart', function (e) {
+	                e.preventDefault();
+	                var touch = e.touches[0];
+	                if (touch) {
+	                    // Do some stuff
+	                    window.moverCelAbajo();
+	                } else {
+	                    // Do some other stuff
+	                }
+	            });
+	            (0, _jquery2.default)('#ctrlB').on('touchstart', function (e) {
+	                e.preventDefault();
+	                var touch = e.touches[0];
+	                if (touch) {
+	                    // Do some stuff
+	                    window.dispararPato();
+	                } else {
+	                    // Do some other stuff
+	                }
+	            });
+	
+	            (0, _jquery2.default)('#ctrlIzq,#ctrlDer,#ctrlArriba,#ctrlAbajo,#ctrlA,#ctrlB').on('touchend', function (e) {
+	                e.preventDefault();
+	                window.matarTiempo();
 	            });
 	
 	            /* Alinear trigger */
@@ -20898,11 +20944,10 @@
 	        }
 	    }, {
 	        key: '_initialize',
-	        value: function _initialize(data) {
-	            // var {users, name} = data;
-	            //this.setState({users, user: name});
-	            alert(1);
-	        }
+	        value: function _initialize(data) {}
+	        // var {users, name} = data;
+	        //this.setState({users, user: name});
+	
 	
 	        /* Matar patos y enemigos, actualizar el score */
 	
@@ -32714,4 +32759,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=bundle.js.map?cache=dc0b309601d3143faa02
+//# sourceMappingURL=bundle.js.map?cache=a3b0731f2f5533208ef8

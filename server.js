@@ -3,6 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
+require('events').EventEmitter.prototype._maxListeners = 0;
 /*=========================================================
 =            Establece el directorio estático (lo hace público)            =
 =========================================================*/
@@ -26,9 +27,15 @@ io.on('connection', function(socket){
   io.on('disconnect', function(){
     console.log('user disconnected_');
   });
+  /* X Y */
+  
   socket.on('servidorX', function(e){
      socket.broadcast.emit('clienteX', e);
-     console.log('Recibiendo cambios desde el cliente');
+     console.log('Recibiendo X cambios desde el cliente');
+  });
+  socket.on('servidorY', function(e){
+     socket.broadcast.emit('clienteY', e);
+     console.log('Recibiendo Y cambios desde el cliente');
   });
 
   socket.on('dispararPato', function(e){
