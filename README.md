@@ -1,4 +1,7 @@
-<h1>Avance de juego Duck Hunt en Node con React, jQuery y Socket.io</h1>
-<br>Instalación:
-<br><br> npm install
-<br> npm start
+* Versión de prueba, aún esta en proceso de desarrollo el juego.
+<br>
+<h1>Duck Hunt en Node.</h1>
+<h3>Desarrollo de microjuego del famoso Duck Hunt utilizando Node, React, jQuery, SASS, Socket.io y WebPack</h3>
+<br><br>Instalación:
+<br>npm install
+<br>npm start
