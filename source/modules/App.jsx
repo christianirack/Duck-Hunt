@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 var path = require('path');
-
 import screenPng from './assets/screen.png';
-
 /* Inicialización de variables y audios */
 var patos = ['pato1', 'pato2', 'pato3', 'pato4'];
 var globalX = 0;
 var globalY = 0;
 var score = 0;
 var add = 10;
-
 var movX = 0;
 var movXtime;
 var movY = 0;
 var movYtime;
-
-
-
 //var malo1Time;
 //var malo1Vidas = 4;
 //var malo2Vidas = 4;
@@ -30,28 +24,17 @@ audioMuere = new Audio('assets/audio-muere.mp3');
 var audioGana;
 audioGana = new Audio('assets/audio-ganar.mp3');
 
-
-  
-
-
 class App extends Component {
-
 estableceXglobal(e){
-
   globalX = e;
   window.actualizarX(e);
 }
 estableceYglobal(e){
-
   globalY = e;
   window.actualizarY(e);
 }
-  
-
- componentDidMount() {
-
+componentDidMount() {
           var that = this;
-
             $(function(){
               if(mUser>0){
                 //console.log('Es móvil');
@@ -59,17 +42,14 @@ estableceYglobal(e){
                 $('main').hide();
               }  
           })
-
             window.disparar = function(){
               that.colision();
             }
 
             window.matarTiempo = function(){
                 clearInterval(movXtime);
-                 clearInterval(movYtime);
-               
+                clearInterval(movYtime);
             }
-
             window.moverCelIzq = function(){
                
                 movXtime = setInterval(function(){
@@ -84,7 +64,6 @@ estableceYglobal(e){
                             movX-=10;
                             globalX = movX - (add);
                             that.estableceXglobal(globalX);
-
                 },20);
             }
           window.moverCelArriba = function(){
@@ -92,7 +71,6 @@ estableceYglobal(e){
                             movY-=10;
                             globalY = movY - (add);
                             that.estableceYglobal(globalY);
-
                 },20);
             }
             window.moverCelAbajo = function(){
@@ -100,7 +78,6 @@ estableceYglobal(e){
                             movY+=10;
                             globalY = movY - (add);
                             that.estableceYglobal(globalY);
-
                 },20);
             }
 
@@ -110,16 +87,12 @@ estableceYglobal(e){
             window.moverYReact = function(e){
                 $("#trigger").css({ top: e });
             }
-
-       
-
             var audioIntro = new Audio('assets/audio-intro.mp3');
             audioIntro.addEventListener('ended', function() {
                 this.currentTime = 0;
                 this.play();
             }, false);
             audioIntro.play();
-            
             $('#splashpage').on('click', function(e) {
                 /*
                 $('#splashpage').hide();
@@ -145,7 +118,6 @@ estableceYglobal(e){
                   else {
                     // Do some other stuff
                   }
-
             });
             $('#ctrlDer').on('touchstart', function(e){
              
@@ -202,12 +174,6 @@ estableceYglobal(e){
                 window.matarTiempo();
 
              });
-
-              
-
-            
-            
-
             /* Alinear trigger */
             /*
             $('#app-js').mousemove(function(event) {
@@ -254,9 +220,6 @@ estableceYglobal(e){
      // var {users, name} = data;
       //this.setState({users, user: name});
   }
-
-
-
     /* Matar patos y enemigos, actualizar el score */
     matar(patoObj, pato) {
             var that = this;
@@ -287,14 +250,12 @@ estableceYglobal(e){
         /* Detectar colisiones entre patos y pistola */
     colision() {
 
-            var that = this;
-       
+        var that = this;
         globalX=$("#trigger").position().left;
         globalY=$("#trigger").position().top;
         //alert( globalX);
         //globalX = $("#trigger").position().left;
         //globalY = $("#trigger").position().top;
-         
             for (var pato in patos) {
                 if (pato) {
                     var patoObj = $('#' + patos[pato]);
@@ -387,10 +348,8 @@ estableceYglobal(e){
     ganarAudio() {
             audioGana.currentTime = 0;
             audioGana.play();
-        }
-   
+    }
         /* Establecer eventos al cargar, botones y posición de la pistola */
-   
         //{this.function.bind(this)}
     render() {
         return ( 
