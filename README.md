@@ -5,4 +5,5 @@
 <br><br>Instalación:
 <br>npm install
 <br>npm start
+<br><br>
 <img src="https://s30.postimg.org/kwr4ko07l/demo.jpg" width="100%">
